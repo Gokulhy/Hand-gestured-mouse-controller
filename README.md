@@ -11,14 +11,6 @@ A computer vision-based mouse controller that uses hand gestures to control your
 - **Click Debouncing**: Prevents accidental multiple clicks with configurable delay
 - **Visual Feedback**: Real-time display of hand landmarks and current action
 
-## Demo
-
-The application displays a live video feed with:
-- Hand landmark detection and tracking
-- Visual neutral zone overlay (magenta rectangle)
-- Current action status display
-- Real-time gesture recognition
-
 ## Requirements
 
 ### Dependencies
