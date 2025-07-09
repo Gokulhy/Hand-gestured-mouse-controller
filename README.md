@@ -137,19 +137,6 @@ min_tracking_confidence=0.5   # Hand tracking confidence threshold
 - Relative movement based on hand position offset from neutral zone
 - Debounced clicking to prevent multiple rapid clicks
 
-## Future Enhancements
-
-- [ ] Scroll gesture support
-- [ ] Drag and drop functionality
-- [ ] Multi-hand gesture support
-- [ ] Improved thumb detection for both hands
-- [ ] Configuration file support
-- [ ] GUI for real-time parameter adjustment
-- [ ] Gesture customization options
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
