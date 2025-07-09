@@ -25,24 +25,6 @@ pip install opencv-python mediapipe pynput
 - Webcam/Camera
 - Windows/macOS/Linux (Note: Some systems may require additional permissions for mouse control)
 
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/hand-gesture-mouse-controller.git
-cd hand-gesture-mouse-controller
-```
-
-2. Install required packages:
-```bash
-pip install -r requirements.txt
-```
-
-3. Run the application:
-```bash
-python gesture-controller.py
-```
-
 ## Usage
 
 1. **Start the Application**: Run `python gesture-controller.py`
