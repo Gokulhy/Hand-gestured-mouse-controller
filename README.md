@@ -156,9 +156,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [MediaPipe](https://mediapipe.dev/) for hand tracking capabilities
 - [OpenCV](https://opencv.org/) for computer vision processing
 - [pynput](https://pypi.org/project/pynput/) for mouse control functionality
-
-## Author
-
-[Your Name] - [your.email@example.com]
-
-Project Link: [https://github.com/yourusername/hand-gesture-mouse-controller](https://github.com/yourusername/hand-gesture-mouse-controller)
