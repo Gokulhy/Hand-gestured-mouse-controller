@@ -1,103 +1,172 @@
-Hand Gesture Mouse Controller
-This Python project allows you to control your mouse cursor and perform clicks using real-time hand gestures detected via your webcam. It provides an intuitive and hands-free way to interact with your computer, ideal for presentations, accessibility, or simply a novel control method.
+# Hand Gesture Mouse Controller
 
-✨ Features
-Cursor Navigation: Move your hand in the webcam's field of view to smoothly navigate the mouse cursor across your screen. The cursor movement is proportional to how far your hand is from a defined central "neutral zone."
+A computer vision-based mouse controller that uses hand gestures to control your computer's cursor and clicking functionality. This project leverages MediaPipe for hand tracking and OpenCV for video processing to provide touchless mouse control.
 
-Left Click: Perform a left mouse click by holding up three fingers (Index, Middle, Ring).
+## Features
 
-Right Click: Perform a right mouse click by holding up four fingers (Index, Middle, Ring, Pinky).
+- **Cursor Movement**: Control mouse cursor by moving your hand within the camera's view
+- **Left Click**: Raise 3 fingers (index, middle, ring) to perform left clicks
+- **Right Click**: Raise 4 fingers (index, middle, ring, pinky) to perform right clicks
+- **Neutral Zone**: Dead zone in the center of the screen to prevent accidental movements
+- **Click Debouncing**: Prevents accidental multiple clicks with configurable delay
+- **Visual Feedback**: Real-time display of hand landmarks and current action
 
-Real-time Visualization: The webcam feed displays your hand landmarks and a visual representation of the neutral zone, along with the detected action.
+## Demo
 
-Customizable Sensitivity: Easily adjust cursor speed and click debounce times to suit your preference.
+The application displays a live video feed with:
+- Hand landmark detection and tracking
+- Visual neutral zone overlay (magenta rectangle)
+- Current action status display
+- Real-time gesture recognition
 
-🛠️ Technologies Used
-Python 3.x: The core programming language.
+## Requirements
 
-OpenCV (cv2): For webcam integration, video stream processing, and drawing visualizations.
+### Dependencies
 
-MediaPipe Hands (mediapipe): A powerful framework for real-time hand tracking and 21 3D hand landmark detection.
-
-pynput: For simulating mouse movements and clicks at the operating system level.
-
-math module: For mathematical calculations (e.g., distance, if needed for more complex gestures).
-
-🚀 Getting Started
-Follow these instructions to get a copy of the project up and running on your local machine.
-
-Prerequisites
-Before running the script, ensure you have Python 3.x installed. Then, install the required libraries using pip:
-
+```bash
 pip install opencv-python mediapipe pynput
+```
 
-Installation
-Clone the repository:
+### System Requirements
 
-git clone [https://github.com/YourUsername/Hand-Gesture-Mouse-Controller.git](https://github.com/YourUsername/Hand-Gesture-Mouse-Controller.git)
-cd Hand-Gesture-Mouse-Controller
+- Python 3.7+
+- Webcam/Camera
+- Windows/macOS/Linux (Note: Some systems may require additional permissions for mouse control)
 
-(Replace YourUsername with your GitHub username and Hand-Gesture-Mouse-Controller with your actual repository name)
+## Installation
 
-Verify your screen resolution:
-Open the gesture-controller.py file and update the SCREEN_WIDTH and SCREEN_HEIGHT variables (around line 34) to match your monitor's actual resolution. This is crucial for accurate cursor mapping.
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/hand-gesture-mouse-controller.git
+cd hand-gesture-mouse-controller
+```
 
-# Example: For a 1920x1080 monitor
-SCREEN_WIDTH, SCREEN_HEIGHT = 1920, 1080 # <-- IMPORTANT: Set your actual screen resolution here!
+2. Install required packages:
+```bash
+pip install -r requirements.txt
+```
 
-Running the Script
-Execute the Python script from your terminal:
-
+3. Run the application:
+```bash
 python gesture-controller.py
+```
 
-🎮 Usage
-Start the Script: Run the gesture-controller.py file. A window showing your webcam feed will appear.
+## Usage
 
-Position Your Hand: Place your hand clearly in front of your webcam. You'll see landmarks drawn on your hand and a magenta rectangle indicating the "neutral zone."
+1. **Start the Application**: Run `python gesture-controller.py`
+2. **Position Your Hand**: Place your hand in front of the camera
+3. **Cursor Control**: Move your hand to control the cursor (outside the neutral zone)
+4. **Left Click**: Raise 3 fingers (index, middle, ring) - excluding thumb
+5. **Right Click**: Raise 4 fingers (index, middle, ring, pinky) - excluding thumb
+6. **Exit**: Press 'q' to quit the application
 
-Navigate Cursor:
+### Controls Summary
 
-Keep your hand's wrist (the base of your palm) within the magenta neutral zone to keep the cursor still.
+| Gesture | Action |
+|---------|--------|
+| Hand Movement | Cursor movement (proportional to distance from center) |
+| 3 Fingers Up | Left Click |
+| 4 Fingers Up | Right Click |
+| 'q' Key | Quit application |
 
-Move your hand outside this zone to start moving the cursor. The further your hand is from the edge of the neutral zone, the faster the cursor will move.
+## Configuration
 
-Left Click: Form a gesture by holding up your Index, Middle, and Ring fingers (3 fingers visible).
+The application includes several configurable parameters in the script:
 
-Right Click: Form a gesture by holding up your Index, Middle, Ring, and Pinky fingers (4 fingers visible).
+### Screen Resolution
+```python
+SCREEN_WIDTH, SCREEN_HEIGHT = 1920, 1080
+```
 
-Switch Focus: To control other applications, ensure the target application window has focus (click on it with your physical mouse initially).
+### Neutral Zone (Dead Zone)
+```python
+NEUTRAL_ZONE_X_MIN = 0.3  # 30% from left
+NEUTRAL_ZONE_X_MAX = 0.7  # 70% from left
+NEUTRAL_ZONE_Y_MIN = 0.3  # 30% from top
+NEUTRAL_ZONE_Y_MAX = 0.7  # 70% from top
+```
 
-Quit: Press the 'q' key on your physical keyboard while the webcam window is active to close the application.
+### Cursor Sensitivity
+```python
+CURSOR_MOVE_FACTOR_X = 0.5  # X-axis movement multiplier
+CURSOR_MOVE_FACTOR_Y = 0.5  # Y-axis movement multiplier
+```
 
-⚙️ Customization
-You can fine-tune the controller's behavior by adjusting the following global variables in gesture-controller.py:
+### Click Debouncing
+```python
+CLICK_DEBOUNCE_TIME = 0.4  # Minimum time between clicks (seconds)
+```
 
-SCREEN_WIDTH, SCREEN_HEIGHT: (Already mentioned) Crucial for correct cursor mapping.
+### MediaPipe Settings
+```python
+min_detection_confidence=0.7  # Hand detection confidence threshold
+min_tracking_confidence=0.5   # Hand tracking confidence threshold
+```
 
-NEUTRAL_ZONE_X_MIN/MAX, NEUTRAL_ZONE_Y_MIN/MAX: Adjust these (values between 0.0 and 1.0) to change the size and position of the "dead zone" where your hand can rest without moving the cursor.
+## Troubleshooting
 
-CURSOR_MOVE_FACTOR_X, CURSOR_MOVE_FACTOR_Y: Control the cursor's speed/sensitivity. Higher values make the cursor move faster.
+### Common Issues
 
-CLICK_DEBOUNCE_TIME: Sets the minimum time (in seconds) between consecutive clicks of the same type. Increase if you're getting accidental double-clicks, decrease if clicks feel unresponsive.
+1. **Camera Not Working**
+   - Ensure your webcam is connected and not being used by another application
+   - Try changing the camera index in `cv2.VideoCapture(0)` to `cv2.VideoCapture(1)` or higher
 
-💡 Potential Improvements & Future Work
-Handedness Detection: More robust click detection by explicitly checking if it's a left or right hand.
+2. **Permission Errors (macOS)**
+   - Go to System Preferences > Security & Privacy > Privacy > Accessibility
+   - Add your terminal or Python to the allowed applications
 
-Dynamic Neutral Zone: A neutral zone that adapts to the user's initial hand position.
+3. **Cursor Too Sensitive/Insensitive**
+   - Adjust `CURSOR_MOVE_FACTOR_X` and `CURSOR_MOVE_FACTOR_Y` values
+   - Modify the neutral zone boundaries
 
-Additional Gestures: Implement more gestures for other actions (e.g., scroll, drag-and-drop, keyboard shortcuts).
+4. **Hand Not Detected**
+   - Ensure good lighting conditions
+   - Lower the `min_detection_confidence` value
+   - Make sure your hand is clearly visible to the camera
 
-User Interface: A simple GUI to adjust settings in real-time without editing code.
+5. **Accidental Clicks**
+   - Increase `CLICK_DEBOUNCE_TIME`
+   - Adjust finger detection sensitivity
 
-Multi-Hand Support: Extend to support two hands for more complex interactions.
+## Technical Details
 
-Calibration Routine: A guided setup for users to calibrate sensitivity and neutral zone.
+### Hand Tracking
+- Uses MediaPipe Hands for real-time hand landmark detection
+- Tracks 21 hand landmarks per detected hand
+- Focuses on single-hand detection for primary control
 
-🤝 Contributing
-Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
+### Gesture Recognition
+- Finger counting based on landmark positions
+- Thumb detection currently optimized for right hand
+- Wrist position used as reference point for cursor movement
 
-📄 License
-This project is open-source and available under the MIT License. (You'll need to create a LICENSE file in your repo with the MIT license text)
+### Mouse Control
+- Utilizes pynput library for cross-platform mouse control
+- Relative movement based on hand position offset from neutral zone
+- Debounced clicking to prevent multiple rapid clicks
 
-📧 Contact
-Gokul [Your Email/LinkedIn Profile Link]
+## Future Enhancements
+
+- [ ] Scroll gesture support
+- [ ] Drag and drop functionality
+- [ ] Multi-hand gesture support
+- [ ] Improved thumb detection for both hands
+- [ ] Configuration file support
+- [ ] GUI for real-time parameter adjustment
+- [ ] Gesture customization options
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [MediaPipe](https://mediapipe.dev/) for hand tracking capabilities
+- [OpenCV](https://opencv.org/) for computer vision processing
+- [pynput](https://pypi.org/project/pynput/) for mouse control functionality
+
+## Author
+
+[Your Name] - [your.email@example.com]
+
+Project Link: [https://github.com/yourusername/hand-gesture-mouse-controller](https://github.com/yourusername/hand-gesture-mouse-controller)
