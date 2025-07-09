@@ -77,31 +77,6 @@ min_detection_confidence=0.7  # Hand detection confidence threshold
 min_tracking_confidence=0.5   # Hand tracking confidence threshold
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-1. **Camera Not Working**
-   - Ensure your webcam is connected and not being used by another application
-   - Try changing the camera index in `cv2.VideoCapture(0)` to `cv2.VideoCapture(1)` or higher
-
-2. **Permission Errors (macOS)**
-   - Go to System Preferences > Security & Privacy > Privacy > Accessibility
-   - Add your terminal or Python to the allowed applications
-
-3. **Cursor Too Sensitive/Insensitive**
-   - Adjust `CURSOR_MOVE_FACTOR_X` and `CURSOR_MOVE_FACTOR_Y` values
-   - Modify the neutral zone boundaries
-
-4. **Hand Not Detected**
-   - Ensure good lighting conditions
-   - Lower the `min_detection_confidence` value
-   - Make sure your hand is clearly visible to the camera
-
-5. **Accidental Clicks**
-   - Increase `CLICK_DEBOUNCE_TIME`
-   - Adjust finger detection sensitivity
-
 ## Technical Details
 
 ### Hand Tracking
